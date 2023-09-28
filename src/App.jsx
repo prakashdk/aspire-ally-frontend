@@ -10,7 +10,7 @@ function App() {
   return (
     <div>
       <Button color="primary">
-        Aspir Ally
+        Aspir Ally <box-icon type='solid' name='ghost'></box-icon>
       </Button>
     </div>
   )
