@@ -1,13 +1,17 @@
 import React from "react";
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import { useNavigate } from 'react-router-dom';
 import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image, Progress, Button } from "@nextui-org/react";
 
 export default function GoalCard({ image, header, body, progress, colorIndex = 1 }) {
-    const colors = ["default","primary", "secondary", "success", "warning", "danger"]
+    const colors = ["default", "primary", "secondary", "success", "warning", "danger"]
+    let navigateTo = useNavigate()
+    const redirect = () => {
+        navigateTo('/goals/short')
+    }
     return (
         <Card>
             <CardHeader>
-
                 <Image
                     alt="nextui logo"
                     height={40}
@@ -22,7 +26,7 @@ export default function GoalCard({ image, header, body, progress, colorIndex = 1
                     <p className="text-small text-default-500">{body}</p>
                 </div>
                 <div className="flex gap-4 items-center">
-                    <Button isIconOnly radius="full" color={colors[colorIndex]} aria-label="Like">
+                    <Button onClick={redirect} isIconOnly radius="full" color={colors[colorIndex]} aria-label="Like">
                         <PlayArrowIcon />
                     </Button>
                 </div>
@@ -32,7 +36,7 @@ export default function GoalCard({ image, header, body, progress, colorIndex = 1
                 <Progress
                     isStriped
                     aria-label="Progress"
-                    color={colors[colorIndex%colors.length]}
+                    color={colors[colorIndex % colors.length]}
                     value={progress}
                     className="max-w-full"
                     label="Progress"

@@ -1,42 +1,60 @@
 import React from "react";
-
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
+import { Link as RouteLink } from 'react-router-dom';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@nextui-org/react";
 
 export default function NavBar() {
   return (
     <Navbar>
       <NavbarBrand>
-        <p className="font-bold text-inherit">Aspir Ally</p>
+        <p className="font-bold text-inherit">
+          <RouteLink to='/'>
+            Aspir Ally
+          </RouteLink>
+        </p>
       </NavbarBrand>
       <NavbarContent className="sm:flex gap-4" justify="center">
         <NavbarItem isActive>
           <Link href="#" aria-current="page">
-            Goals
+            <RouteLink to='/goals'>
+              Goals
+            </RouteLink>
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Leaderboard
+            <RouteLink to='/leaderboard'>
+              Leaderboard
+            </RouteLink>
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            Updates
+            <RouteLink to='/updates'>
+              Updates
+            </RouteLink>
           </Link>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
-            About
+            <RouteLink to='/about'>
+              About
+            </RouteLink>
           </Link>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="lg:flex">
-          <Link href="#">Login</Link>
+          <Link href="#">
+            <RouteLink to='/login'>
+              Login
+            </RouteLink>
+          </Link>
         </NavbarItem>
         <NavbarItem>
           <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
+            <RouteLink to='/signup'>
+              Sign Up
+            </RouteLink>
           </Button>
         </NavbarItem>
       </NavbarContent>

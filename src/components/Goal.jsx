@@ -13,6 +13,7 @@ export default function Goal() {
     const [openToast, setOpenToast] = useState(false)
     const [toastMessage, setToastMessage] = useState("")
     const [goal, setGoal] = useState(null)
+    const [goals, setGoals] = useState([]);
     const [isFetchLoading, setIsFetchLoading] = useState(false)
     const [severity, setSeverity] = useState("success")
 
@@ -30,6 +31,7 @@ export default function Goal() {
         try {
             const response = await fetchData(url)
             setGoal(response)
+            setGoals((g) => [...g, response])
             setToastMessage("Goal Added successfully")
             setSeverity("success")
             setOpenToast(true)
@@ -49,7 +51,7 @@ export default function Goal() {
             {isFetchLoading && <Loader label="Adding..." />}
             <GoalInputGroup disabled={isFetchLoading} input={input} setInput={setInput} clickEvent={addGoal} />
             <Spacer y={5} />
-            <GoalPanel list={[goal]} />
+            <GoalPanel list={goals} />
             <Toast message={toastMessage} severity={severity} open={openToast} setOpen={setOpenToast} />
         </div>
     )
