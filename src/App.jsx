@@ -2,17 +2,21 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { Button } from "@nextui-org/react";
+import { Button, Spacer } from "@nextui-org/react";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
+import NavBar from './utils/NavBar';
+import Goal from './components/Goal';
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <div>
-      <Button color="primary">
-        Aspir Ally <box-icon type='solid' name='ghost'></box-icon>
-      </Button>
-    </div>
+    <>
+      <NextThemesProvider attribute="class" defaultTheme="dark">
+        <NavBar />
+        <Spacer y={10} />
+        <Goal />
+      </NextThemesProvider>
+    </>
   )
 }
 
