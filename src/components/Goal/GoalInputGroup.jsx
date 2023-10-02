@@ -10,7 +10,7 @@ export default function GoalInputGroup({ input, setInput, clickEvent, disabled }
                 <div className="flex w-[80%] flex-wrap md:flex-nowrap gap-4">
                     <Input disabled={disabled} value={input} onChange={(e) => setInput(e.target.value)} size="sm" type="text" label="What is your goal?" />
                 </div>
-                <Button disabled={disabled} onClick={clickEvent} size="lg">Add</Button>
+                <Button color="primary" disabled={disabled} onClick={clickEvent} size="lg">Add</Button>
             </ButtonGroup>
         </form>
     )

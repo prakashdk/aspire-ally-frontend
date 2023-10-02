@@ -3,19 +3,31 @@ import '../styles/goal.css'
 import { Spacer } from "@nextui-org/react";
 import GoalPanel from "./Goal/GoalPanel";
 import Loader from "../shared/Loader";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SHORT_TERM_GOAL_URL } from "../constants/endpoints";
 import Toast from "../shared/Toast";
 import fetchData from "../service/fetchData";
+import { useDispatch } from "react-redux";
+import useFetch from "../shared/hooks/useFetch";
+import Footer from "../utils/Footer";
 
 export default function Goal() {
     const [input, setInput] = useState("")
     const [openToast, setOpenToast] = useState(false)
     const [toastMessage, setToastMessage] = useState("")
-    const [goal, setGoal] = useState(null)
-    const [goals, setGoals] = useState([]);
     const [isFetchLoading, setIsFetchLoading] = useState(false)
     const [severity, setSeverity] = useState("success")
+    const dispatch = useDispatch()
+    // const {data,isLoading,error}=useFetch("")
+
+    // useEffect(()=>{
+    //     dispatch(()=>{
+    //         return {
+    //             type: "SET_ALL_GOALS",
+    //             payload: data
+    //         }
+    //     })
+    // },[])
 
     const addGoal = async () => {
         if (input === "") {
@@ -30,8 +42,10 @@ export default function Goal() {
         setInput("")
         try {
             const response = await fetchData(url)
-            setGoal(response)
-            setGoals((g) => [...g, response])
+            dispatch({
+                type: "APPEND_GOAL",
+                payload: response
+            })
             setToastMessage("Goal Added successfully")
             setSeverity("success")
             setOpenToast(true)
@@ -51,8 +65,9 @@ export default function Goal() {
             {isFetchLoading && <Loader label="Adding..." />}
             <GoalInputGroup disabled={isFetchLoading} input={input} setInput={setInput} clickEvent={addGoal} />
             <Spacer y={5} />
-            <GoalPanel list={goals} />
+            <GoalPanel />
             <Toast message={toastMessage} severity={severity} open={openToast} setOpen={setOpenToast} />
+            <Footer />
         </div>
     )
 }

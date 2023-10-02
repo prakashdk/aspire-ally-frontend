@@ -1,60 +1,78 @@
 import React from "react";
-import { Link as RouteLink } from 'react-router-dom';
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button } from "@nextui-org/react";
+import { NavLink } from 'react-router-dom';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import DarkModeIcon from '@mui/icons-material/DarkMode';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, Switch } from "@nextui-org/react";
+import { SunIcon } from "../assets/icons/SunIcon";
+import { MoonIcon } from "../assets/icons/MoonIcon";
 
-export default function NavBar() {
+export default function NavBar({ setTheme }) {
   return (
     <Navbar>
       <NavbarBrand>
         <p className="font-bold text-inherit">
-          <RouteLink to='/'>
+          <NavLink className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          } to='/'>
             Aspir Ally
-          </RouteLink>
+          </NavLink>
         </p>
       </NavbarBrand>
       <NavbarContent className="sm:flex gap-4" justify="center">
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page">
-            <RouteLink to='/goals'>
-              Goals
-            </RouteLink>
-          </Link>
+        <NavbarItem>
+          <NavLink className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          } color="blue" to='/goals'>
+            Goals
+          </NavLink>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            <RouteLink to='/leaderboard'>
-              Leaderboard
-            </RouteLink>
-          </Link>
+          <NavLink className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          } to='/leaderboard'>
+            Leaderboard
+          </NavLink>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            <RouteLink to='/updates'>
-              Updates
-            </RouteLink>
-          </Link>
+          <NavLink className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          } to='/updates'>
+            Updates
+          </NavLink>
         </NavbarItem>
         <NavbarItem>
-          <Link color="foreground" href="#">
-            <RouteLink to='/about'>
-              About
-            </RouteLink>
-          </Link>
+          <NavLink className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          } to='/about'>
+            About
+          </NavLink>
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
         <NavbarItem className="lg:flex">
-          <Link href="#">
-            <RouteLink to='/login'>
-              Login
-            </RouteLink>
-          </Link>
+          <Switch
+            defaultSelected
+            size="md"
+            color="primary"
+            onValueChange={() => setTheme((theme) => !theme)}
+            startContent={<SunIcon />}
+            endContent={<MoonIcon />}
+          />
+        </NavbarItem>
+        <NavbarItem className="lg:flex">
+          <NavLink className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          } to='/login'>
+            Login
+          </NavLink>
         </NavbarItem>
         <NavbarItem>
           <Button as={Link} color="primary" href="#" variant="flat">
-            <RouteLink to='/signup'>
+            <NavLink className={({ isActive, isPending }) =>
+              isPending ? "pending" : isActive ? "active" : ""
+            } to='/signup'>
               Sign Up
-            </RouteLink>
+            </NavLink>
           </Button>
         </NavbarItem>
       </NavbarContent>

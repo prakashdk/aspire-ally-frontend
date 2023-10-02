@@ -1,14 +1,23 @@
+import { useSelector } from "react-redux"
 import GoalCard from "./GoalCard"
 
-export default function GoalPanel({ list }) {
+export default function GoalPanel() {
+    const { goals } = useSelector(state => state.goalReducer)
+    if (goals?.length === 0) {
+        return (
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+                Add Some Goals
+            </div>
+        )
+    }
     return (
         <div className="grid">
-            {list.map((data, index) => {
+            {goals.map((data, index) => {
                 if (data !== null) {
-                    const { image, title, description, progress } = data
+                    const { title } = data
                     return (
                         <div className="grid-item" key={title + index}>
-                            <GoalCard image={image} header={title} body={description} progress={progress} colorIndex={index + 1} />
+                            <GoalCard data={data} index={index + 1} />
                         </div>
                     )
                 }

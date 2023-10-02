@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import fetchData from "../../service/fetchData";
 
-export function useFetch(url) {
+export default function useFetch(url) {
     const [data, setData] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)

@@ -1,0 +1,3 @@
+- add reducer
+- Short term goal page
+- add data in dynamo db

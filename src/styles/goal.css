@@ -1,6 +1,7 @@
-/* .goal {
-    padding: 10px;
-} */
+.goal {
+    height: 100%;
+    /* overflow-y: scroll; */
+}
 
 .loader {
     position: absolute;
@@ -23,3 +24,52 @@
 .grid-item {
     padding: 5%;
 }
+.card-button{
+    width: 100%;
+    display: flex;
+    align-items: right;
+    justify-content: right;
+}
+
+.jumbotron{
+    padding: 5%;
+    background-image: linear-gradient(#bee1fd,white);
+}
+.jumbotron h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 50px;
+    font-weight: bolder;
+}
+.sidebar{
+    border-left: 1px solid #a2d1f8;
+    background-color: rgba(255,255,255,0.8);
+    height: 100%;
+    padding-left: 10%;
+}
+.sidebar li{
+    padding: 1% 0%;
+}
+.grid-2{
+    display: grid;
+    grid-template-columns: 75% 25%;
+}
+.grid-2 > div{
+    padding: 1%;
+}
+
+.action-panel{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+}
+.action-panel p{
+    font-size: x-large;
+}
+
+.action-panel .action{
+    padding: 3% 0% 0% 3%;
+}
+.action-panel .action li{
+    padding: 2%;
+}
+
+
