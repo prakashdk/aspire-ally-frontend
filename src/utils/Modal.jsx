@@ -17,7 +17,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function Modal({ open, setOpen, title, children }) {
+export default function Modal({ open, setOpen,handlePrevious, handleNext, title, children }) {
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -35,17 +35,19 @@ export default function Modal({ open, setOpen, title, children }) {
               color="inherit"
               onClick={handleClose}
               aria-label="close"
+              disabled
             >
               <ArrowBack />
             </IconButton>
             <Typography sx={{ ml: 2, flex: 1 }} variant="h6" component="div">
-              Knowledge Check - {title}
+              {title} (Knowledge Check)
             </Typography>
             <IconButton
               edge="start"
               color="inherit"
               onClick={handleClose}
               aria-label="close"
+              disabled
             >
               <ArrowForward />
             </IconButton>

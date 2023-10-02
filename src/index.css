@@ -42,4 +42,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 1px solid block;
+}
+.error{
+  color: red;
+}
+.link{
+  color: #2196f3;
+  font-weight: normal;
+}
+.link:hover{
+  text-decoration: underline;
 }

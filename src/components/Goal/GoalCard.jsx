@@ -11,7 +11,7 @@ export default function GoalCard({ data, index }) {
     const dispatch = useDispatch()
     const redirect = () => {
         dispatch({ type: "SET_ACTIVE_GOAL_ID", payload: index - 1 })
-        navigateTo('/goals/short')
+        navigateTo('/goals/course')
     }
     return (
         < Card >

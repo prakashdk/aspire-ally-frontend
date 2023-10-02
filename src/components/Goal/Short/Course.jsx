@@ -21,23 +21,54 @@ import {
   ArrowForwardIosOutlined,
 } from "@mui/icons-material";
 import Modal from "../../../utils/Modal";
+import QuizGroup from "./QuizGroup";
+import fetchData from "../../../service/fetchData";
+import { QUIZZ_URL } from "../../../constants/endpoints";
+import Toast from "../../../shared/Toast";
 
 export const Course = () => {
   const [activeGoalIndex, setActiveGoalIndex] = useState(0);
   const [openDialog, setOpenDialog] = useState(false);
-
+  const [quizzes, setQuizzes] = useState([]);
+  const [isQuizLoading, setIsQuizLoading] = useState(false);
   const { goals, activeGoalId } = useSelector((state) => state.goalReducer);
   const currentGoal = goals[activeGoalId] ?? {};
   const { title, description, progress, shortTermGoals } = currentGoal;
+  const { topic } = shortTermGoals?.[activeGoalIndex] ?? {}; 
   const navigateTo = useNavigate();
+
+  //For toast
+  const [toastMessage, setToastMessage] = useState("")
+  const [severity, setSeverity] = useState("success")
+  const [openToast, setOpenToast] = useState(false)
+
   useEffect(() => {
     if (goals.length === 0 || activeGoalId === -1) {
       navigateTo("/goals");
     }
   }, []);
-  const handleNext = () => {
-    setOpenDialog(true)
-    // setActiveGoalIndex((i) => i + 1);
+
+  const handleNext = async () => {
+    setOpenDialog(true);
+    setIsQuizLoading(true);
+    try {
+      const url = new URL(QUIZZ_URL);
+      url.searchParams.append("topic", `${topic} for ${title}`);
+      const response = await fetchData(url);
+      setQuizzes(response.quiz);
+    } catch (error) {
+      setSeverity("error")
+      setToastMessage("Error: "+error.message)
+      setOpenToast(true)
+      console.log(error);
+      setOpenDialog(false)
+    }
+    setIsQuizLoading(false);
+  };
+  const handleFinish = () => {
+    setOpenDialog(false);
+    setQuizzes([])
+    setActiveGoalIndex((i) => i + 1);
   };
   const handlePrevious = () => {
     setActiveGoalIndex((i) => i - 1);
@@ -71,7 +102,7 @@ export const Course = () => {
             </div>
           ) : (
             <div>
-              <ShortTermGoalCard data={shortTermGoals?.[activeGoalIndex]} />
+              <ShortTermGoalCard title={title} data={shortTermGoals?.[activeGoalIndex]} />
               <div className="button-group">
                 <div className="button-left">
                   <Button
@@ -96,8 +127,9 @@ export const Course = () => {
           <SideBar activeIndex={activeGoalIndex} menu={shortTermGoals} />
         </div>
       </div>
-      <Modal title={title} open={openDialog} setOpen={setOpenDialog}>
-        child
+      <Toast message={toastMessage} severity={severity} open={openToast} setOpen={setOpenToast} />
+      <Modal title={`${title} - ${topic}`} open={openDialog} setOpen={setOpenDialog}>
+        <QuizGroup handleFinish={handleFinish} isLoading={isQuizLoading} quizzes={quizzes} />
       </Modal>
     </div>
   );

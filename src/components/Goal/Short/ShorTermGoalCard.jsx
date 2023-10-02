@@ -1,8 +1,9 @@
 import React from "react";
 
-import { Checkbox, Chip } from "@nextui-org/react";
+import { Accordion, AccordionItem, Checkbox, Chip } from "@nextui-org/react";
+import Tasks from "./Tasks";
 
-export default function ShortTermGoalCard({ data }) {
+export default function ShortTermGoalCard({ title, data }) {
   const { topic, actions, timeSpan } = data ?? {};
   return (
     <div className="action-panel">
@@ -11,14 +12,14 @@ export default function ShortTermGoalCard({ data }) {
         <Chip color="default">{timeSpan}</Chip>
       </div>
       <div class="action">
-        <ul>
+        <Accordion selectionMode="multiple" variant="bordered">
           {actions &&
             actions.map((action) => (
-              <li key={action}>
-                <Checkbox lineThrough>{action}</Checkbox>
-              </li>
+              <AccordionItem key={action} aria-label={action} title={action}>
+                <Tasks step={`${action} for ${title}`} />
+              </AccordionItem>
             ))}
-        </ul>
+        </Accordion>
       </div>
     </div>
   );
