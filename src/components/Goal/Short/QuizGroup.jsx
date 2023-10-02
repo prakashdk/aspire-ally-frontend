@@ -34,7 +34,7 @@ export default function QuizGroup({ handleFinish, quizzes, isLoading }) {
   }
   return (
     <div>
-      {!isExamOver && (
+      {isExamOver && (
         <div style={{ float: "right", padding: "1%" }}>
           <Chip color="success">{sum(scores)}/50</Chip>
         </div>
