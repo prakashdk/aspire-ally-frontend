@@ -9,19 +9,19 @@ import Goal from './components/Goal';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './index.css'
 import { Course } from './components/Goal/Short/Course';
-
+import UpdatesContainer from './components/Updates/UpdatesContainer';
 function App() {
-  const [theme,setTheme]=useState(true)
+  const [theme, setTheme] = useState(true)
   return (
     <Router>
-      <NextThemesProvider attribute="class" defaultTheme={theme?"light":"dark"}>
+      <NextThemesProvider attribute="class" defaultTheme={theme ? "light" : "dark"}>
         <NavBar setTheme={setTheme} />
         <Spacer y={10} />
         <div style={{ padding: "0% 5%" }}>
           <Routes>
             <Route path='/' element={<div>Home</div>} />
             <Route path='/leaderboard' element={<div>Leaderboard</div>} />
-            <Route path='/updates' element={<div>Updates</div>} />
+            <Route path='/updates' element={<UpdatesContainer></UpdatesContainer>} />
             <Route path='/about' element={<div>About</div>} />
             <Route path='/login' element={<div>Login</div>} />
             <Route path='/signup' element={<div>Sign Up</div>} />
