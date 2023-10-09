@@ -69,6 +69,7 @@ export const Course = () => {
     setOpenDialog(false);
     setQuizzes([])
     setActiveGoalIndex((i) => i + 1);
+    // Update progress
   };
   const handlePrevious = () => {
     setActiveGoalIndex((i) => i - 1);
@@ -80,7 +81,7 @@ export const Course = () => {
         <div>
           <Progress
             color="primary"
-            value={progress}
+            value={60}
             className="max-w-full"
             label=" "
             aria-label=" "

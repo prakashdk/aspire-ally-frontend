@@ -20,9 +20,6 @@ export default function useFetch(url, queryStringParams) {
       }
     }
     getData();
-    // return ()=>{
-    //   console.log("Use fetch closed");
-    // }
   }, [url]);
   return { data, isLoading, error };
 }

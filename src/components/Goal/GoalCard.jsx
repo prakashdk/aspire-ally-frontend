@@ -27,7 +27,7 @@ export default function GoalCard({ data, index }) {
             <CardHeader className="flex gap-3">
                 <div className="flex flex-col">
                     <p className="text-md">{title}</p>
-                    <p className="text-small text-default-500">{description}</p>
+                    <p className="text-small text-default-500">{description.slice(0,230)+"..."}</p>
                 </div>
                 <div className="flex gap-4 items-right card-button">
                     <Button onClick={redirect} isIconOnly radius="full" color={colors[index]} aria-label="Like">
@@ -41,7 +41,7 @@ export default function GoalCard({ data, index }) {
                     isStriped
                     aria-label="Progress"
                     color={colors[index % colors.length]}
-                    value={progress}
+                    value={0}
                     className="max-w-full"
                     label="Progress"
                     size="md"

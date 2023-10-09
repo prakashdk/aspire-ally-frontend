@@ -1,3 +1,4 @@
+import { Tag } from "@mui/icons-material";
 import { Card, CardHeader, CardBody, CardFooter, Divider, Link, Image } from "@nextui-org/react";
 
 export default function WhatsNew({ tech }) {
@@ -6,7 +7,7 @@ export default function WhatsNew({ tech }) {
             <Card className="max-w-[400px]">
                 <CardHeader className="flex gap-3">
                     <div className="flex flex-col">
-                        <p className="text-md">{tech?.techName}</p>
+                        <p className="text-md"><Tag/> {tech?.techName}</p>
                     </div>
                 </CardHeader>
                 <Divider />

@@ -7,21 +7,20 @@ export const PathHistory = ({ child }) => {
   return (
     <div>
       <Breadcrumbs color='primary' aria-label="breadcrumb">
-        <Link className='active' to="/">
+        <Link to="/">
           {/* <Home fontSize='10px' /> */}
           Home
         </Link>
-        <Link className='active'
+        <Link
           to='/goals'
         >
           Goals
         </Link>
-        <Link
+        <Link className='active'
           to="#">
           {child}
         </Link>
       </Breadcrumbs>
-
     </div>
   )
 }

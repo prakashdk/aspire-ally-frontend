@@ -67,7 +67,7 @@ export default function NavBar({ setTheme }) {
           </NavLink>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
+          <Button color="primary" href="#" variant="flat">
             <NavLink className={({ isActive, isPending }) =>
               isPending ? "pending" : isActive ? "active" : ""
             } to='/signup'>

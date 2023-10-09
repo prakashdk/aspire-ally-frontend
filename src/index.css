@@ -44,13 +44,13 @@
   justify-content: center;
   border: 1px solid block;
 }
-.error{
+.error {
   color: red;
 }
-.link{
+.link {
   color: #2196f3;
   font-weight: normal;
 }
-.link:hover{
+.link:hover {
   text-decoration: underline;
 }

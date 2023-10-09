@@ -41,6 +41,7 @@ export default function QuizGroup({ handleFinish, quizzes, isLoading }) {
       )}
       {quizzes.map((quiz, index) => (
         <Quiz
+        key={quiz.id}
           selected={selectedOptions[index]}
           handleSelected={handleSelected}
           quiz={quiz}

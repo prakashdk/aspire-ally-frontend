@@ -27,7 +27,7 @@ export default function Footer() {
     <div className="footer">
       <div className="grid">
         {(error ? defaultQuotes : (data?.quotes ?? ["","",""])).map((quote, index) => (
-          <div key={quote.id} style={{ padding: "1%" }}>
+          <div key={`${quote.id}-${index}`} style={{ padding: "1%" }}>
             <FooterCard isLoading={isLoading} index={index + 1}>
               {quote.quote}
             </FooterCard>

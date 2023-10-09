@@ -2,7 +2,7 @@ import React from "react";
 import useFetch from "../../../shared/hooks/useFetch";
 import Loader from "../../../shared/Loader";
 import { TASK_URL } from "../../../constants/endpoints";
-import { Checkbox, Chip, Spinner } from "@nextui-org/react";
+import { Checkbox, Chip, Link, Spinner } from "@nextui-org/react";
 import { ArrowOutward } from "@mui/icons-material";
 
 export default function Tasks({ step }) {
@@ -33,11 +33,10 @@ export default function Tasks({ step }) {
               <ul>
                 {task?.references &&
                   task?.references?.map((reference) => (
-                    <li>
-                      <a className="link" target="_blank" href={reference}>
+                    <li key={reference}>
+                      <Link isExternal showAnchorIcon href={reference}>
                         {reference}
-                        <ArrowOutward />
-                      </a>
+                      </Link>
                     </li>
                   ))}
               </ul>

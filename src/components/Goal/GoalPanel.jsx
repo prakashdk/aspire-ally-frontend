@@ -6,6 +6,7 @@ export default function GoalPanel() {
   const { goals } = useSelector((state) => state.goalReducer);
   if (goals?.length === 0) {
     return (
+
       <div style={{ opacity: "0.3", color: "#2196f3" }}>
         <div className="center" style={{ fontSize: "150px" }}>
           <AddBox fontSize="" />
@@ -20,7 +21,7 @@ export default function GoalPanel() {
         if (data !== null) {
           const { title } = data;
           return (
-            <div className="grid-item" key={title + index}>
+            <div className="grid-item" key={data.id}>
               <GoalCard data={data} index={index + 1} />
             </div>
           );

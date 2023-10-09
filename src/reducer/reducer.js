@@ -1,6 +1,7 @@
 const initState = {
   goals: [],
-  activeGoalId: -1
+  activeGoalId: -1,
+  userId:"2215211b-6e33-404d-a3f0-bb89f375b493"
 }
 
 export default function goalReducer(state = initState, action) {
@@ -20,6 +21,11 @@ export default function goalReducer(state = initState, action) {
       return {
         ...state,
         activeGoalId: payload
+      }
+    case "SET_USER_ID":
+      return {
+        ...state,
+        userId: payload
       }
     default:
       return initState
